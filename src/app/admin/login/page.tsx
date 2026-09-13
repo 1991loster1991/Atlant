@@ -1,5 +1,7 @@
 'use client';
+
 export const dynamic = 'force-dynamic';
+
 import { useState } from 'react';
 import { createClient } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
@@ -8,11 +10,13 @@ export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const supabase = createClient();
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Instanciamos Supabase aquí adentro para que solo corra en el navegador al hacer submit
+    const supabase = createClient();
+    
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (!error) {
       router.push('/admin/dashboard');
