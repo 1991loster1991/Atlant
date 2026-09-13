@@ -1,9 +1,12 @@
 import { createBrowserClient } from '@supabase/ssr'
 
 export function createClient() {
-  // Usamos una URL de respaldo válida para que el build de Vercel nunca falle por falta de variables
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+  // Verificamos de forma estricta si la variable existe y no está vacía o llena de espacios
+  const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  return createBrowserClient(supabaseUrl, supabaseAnonKey);
+  const supabaseUrl = (rawUrl && rawUrl.trim().length > 0) ? rawUrl.trim() : 'https://placeholder.supabase.co';
+  const supabaseKey = (rawKey && rawKey.trim().length > 0) ? rawKey.trim() : 'placeholder-anon-key';
+
+  return createBrowserClient(supabaseUrl, supabaseKey);
 }

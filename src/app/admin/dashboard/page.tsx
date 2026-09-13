@@ -1,5 +1,7 @@
 'use client';
+
 export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
@@ -24,12 +26,10 @@ export default function AdminDashboard() {
   const [qrImageUrl, setQrImageUrl] = useState('');
   const [targetUrl, setTargetUrl] = useState('');
   
-  const supabase = createClient();
   const router = useRouter();
 
   // Generar el QR cada vez que cambie la localidad o el comercio
   useEffect(() => {
-    // Dominio base de tu app (puedes cambiarlo por tu URL de producción en Vercel cuando la tengas)
     const baseUrl = window.location.origin;
     const url = `${baseUrl}/map/${selectedLocality}${merchantName ? `?ref=${encodeURIComponent(merchantName)}` : ''}`;
     
@@ -39,8 +39,8 @@ export default function AdminDashboard() {
       width: 400,
       margin: 2,
       color: {
-        dark: '#0f172a', // Color oscuro del QR
-        light: '#ffffff', // Fondo blanco
+        dark: '#0f172a',
+        light: '#ffffff',
       }
     }, (err, dataUrl) => {
       if (!err) {
@@ -50,6 +50,8 @@ export default function AdminDashboard() {
   }, [selectedLocality, merchantName]);
 
   const handleLogout = async () => {
+    // Instanciamos Supabase aquí dentro para evitar ejecuciones prematuras
+    const supabase = createClient();
     await supabase.auth.signOut();
     router.push('/admin/login');
   };
