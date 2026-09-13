@@ -1,0 +1,4 @@
+{
+  "/map/[locality]/page": "app/map/[locality]/page.js",
+  "/page": "app/page.js"
+}
