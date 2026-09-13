@@ -6,9 +6,13 @@ export async function middleware(request: NextRequest) {
     request: { headers: request.headers },
   })
 
+  // Usamos valores de respaldo para que el build en Vercel no falle si faltan las variables
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       cookies: {
         get(name: string) { return request.cookies.get(name)?.value },
