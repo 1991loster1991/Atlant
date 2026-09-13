@@ -1,9 +1,9 @@
 import { createBrowserClient } from '@supabase/ssr'
 
-// ¡Asegúrate de que tenga la palabra export adelante!
 export function createClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  // Usamos valores de respaldo por si las variables no están configuradas en Vercel todavía
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+
+  return createBrowserClient(supabaseUrl, supabaseAnonKey)
 }
