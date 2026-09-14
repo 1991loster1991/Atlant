@@ -1,4 +1,4 @@
 {
-  "/map/[locality]/page": "app/map/[locality]/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/map/[locality]/page": "app/map/[locality]/page.js"
 }
