@@ -61,7 +61,7 @@ export default function MapCanvas({ locality, initialPlaces, categories }: Props
       </div>
 
       {/* Filtros de Categoría */}
-      <div className="relative z-20 pt-3 px-4 flex justify-center w-full">
+      <div className="relative z-20 pt-3 px-4 flex justify-center w-full shrink-0">
         <CategoryFilters 
           categories={categories} 
           selectedCategory={selectedCategory} 
@@ -69,11 +69,11 @@ export default function MapCanvas({ locality, initialPlaces, categories }: Props
         />
       </div>
 
-      {/* Contenedor Horizontal Desplazable (Estilo Ruta Costera) */}
-      <div className="relative z-10 flex-1 w-full overflow-x-auto overflow-y-hidden flex items-center px-16 scrollbar-thin scrollbar-thumb-slate-800">
+      {/* Contenedor Horizontal Desplazable (Forzado tanto para PC como para móvil) */}
+      <div className="relative z-10 flex-1 w-full overflow-x-auto overflow-y-hidden flex items-center px-16 scrollbar-thin scrollbar-thumb-amber-500/40 scrollbar-track-slate-900">
         <div 
-          className="relative flex items-center min-w-max h-[420px] mx-auto"
-          style={{ width: `${Math.max(filteredPlaces.length * 280, 1400)}px` }}
+          className="relative flex items-center h-[420px] mx-auto shrink-0"
+          style={{ width: `${Math.max(filteredPlaces.length * 280, 1400)}px`, minWidth: '1400px' }}
         >
           <svg className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_0_10px_rgba(217,119,6,0.5)]" preserveAspectRatio="none" viewBox="0 100 1400 300">
             <path 
@@ -149,7 +149,7 @@ export default function MapCanvas({ locality, initialPlaces, categories }: Props
       </div>
 
       {/* Indicador visual de desplazamiento horizontal */}
-      <div className="py-2 text-center bg-slate-950/90 border-t border-slate-900/80 text-slate-400 text-[11px] tracking-widest uppercase flex items-center justify-center gap-2">
+      <div className="py-2 text-center bg-slate-950/90 border-t border-slate-900/80 text-slate-400 text-[11px] tracking-widest uppercase flex items-center justify-center gap-2 shrink-0">
         <span className="text-amber-500">◀</span> Desliza horizontalmente para explorar el mapa táctico de la ruta <span className="text-amber-500">▶</span>
       </div>
 
