@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Locality, Place, Category } from '@/lib/types';
 import CategoryFilters from '@/components/CategoryFilters';
 import PlaceCard from '@/components/PlaceCard';
+
 interface Props {
   locality: Locality;
   initialPlaces: Place[];
@@ -52,7 +53,7 @@ export default function MapCanvas({ locality, initialPlaces, categories }: Props
       {/* 🗺️ FONDO HOLOGRÁFICO TÁCTICO */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
         <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-60 filter contrast-150 brightness-110 sepia-[0.7] hue-rotate-[10deg] saturate-200 transition-all duration-700"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 filter contrast-150 brightness-110 sepia-[0.7] hue-rotate-[10deg] saturate-200 transition-all duration-700"
           style={{ backgroundImage: `url('/maps/${locality.slug}.png')` }}
         />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(2,6,23,0.1)_0%,_rgba(2,6,23,0.85)_100%)]" />
